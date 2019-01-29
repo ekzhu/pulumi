@@ -43,6 +43,7 @@ message ReadResourceRequest {
     google.protobuf.Struct properties = 5; // optional state sufficient to uniquely identify the resource.
     repeated string dependencies = 6;      // a list of URNs that this read depends on, as observed by the language host.
     string provider = 7;                   // an optional reference to the provider to use for this read.
+    repeated string aliases = 8;           // a list of additional URNs that shoud be considered the same.
 }
 
 // ReadResourceResponse contains the result of reading a resource's state.
@@ -66,8 +67,8 @@ message RegisterResourceRequest {
     bool protect = 6;                  // true if the resource should be marked protected.
     repeated string dependencies = 7;  // a list of URNs that this resource depends on, as observed by the language host.
     string provider = 8;               // an optional reference to the provider to manage this resource's CRUD operations.
-
     map<string, PropertyDependencies> propertyDependencies = 9; // a map from property keys to the dependencies of the property.
+    repeated string aliases = 10;       // a list of additional URNs that shoud be considered the same.
 }
 
 // RegisterResourceResponse is returned by the engine after a resource has finished being initialized.  It includes the
